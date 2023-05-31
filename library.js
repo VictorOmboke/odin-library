@@ -18,7 +18,7 @@ function addBookToLibrary() {
 
 addBookToLibrary();
 
-const display = document.querySelector("#main-content");
+const display = document.querySelector(".display");
 
 function displayBook() {
   myLibrary.forEach((book) => {
