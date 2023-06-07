@@ -20,11 +20,31 @@ function Book(title, author, pages, read) {
 function displayBook() {
   myLibrary.forEach((book) => {
     let newBook = document.createElement("div");
+    let title = document.createElement("div");
+    let author = document.createElement("div");
+    let pages = document.createElement("div");
+    let read = document.createElement("div");
+
     newBook.classList.add("card");
-    newBook.innerHTML = book;
+    title.classList.add("title");
+    author.classList.add("author");
+    pages.classList.add("pages");
+    read.classList.add("read");
+
+    title.textContent = book[0];
+    author.textContent = book[1];
+    pages.textContent = book[2];
+    read.textContent = book[3];
+
+    newBook.appendChild(title);
+    newBook.appendChild(author);
+    newBook.appendChild(pages);
+    newBook.appendChild(read);
+
     display.appendChild(newBook);
   });
 }
+
 //Event listener to open the form for user
 addBook.addEventListener("click", () => {
   formContainer.style.display = "block";
@@ -49,11 +69,11 @@ form.addEventListener("submit", function (e) {
   let book1 = new Book(
     document.getElementById("title").value,
     document.getElementById("author").value,
-    document.getElementById("pages").value,
+    `${document.getElementById("pages").value} Pages`,
     document.getElementById("read").value
   );
   e.preventDefault();
-  myLibrary.push(Object.values(book1).join(" "));
+  myLibrary.push(Object.values(book1));
   displayBook();
   console.log(myLibrary);
   closeForm();
