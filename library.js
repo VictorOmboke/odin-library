@@ -1,55 +1,60 @@
 //Dom elements
-const display = document.querySelector("#display");
 const formContainer = document.querySelector("#form-popup");
 const addBook = document.querySelector(".open-form");
-const form = document.querySelector(".formContainer");
-const checkbox = document.querySelector("input[type='checkbox']");
+const form = document.querySelector("#formContainer");
+const submitBtn = document.querySelector("#submit");
 
 //Array for storing books
 let myLibrary = [];
 
 //Object constructor for adding new books
-function Book(title, author, pages, read) {
-  (this.title = title),
-    (this.author = author),
-    (this.pages = pages),
-    (this.read = read);
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
 }
 
 //Function for displaying the books
 function displayBook() {
-  myLibrary.forEach((book) => {
-    let newBook = document.createElement("div");
+  const display = document.getElementById("display");
+  display.innerHTML = "";
+
+  for (let i = 0; i < myLibrary.length; i++) {
+    let book = myLibrary[i];
+
+    let card = document.createElement("div");
+    card.classList.add("card");
+
     let title = document.createElement("div");
-    let author = document.createElement("div");
-    let pages = document.createElement("div");
-    let read = document.createElement("div");
-
-    newBook.classList.add("card");
     title.classList.add("title");
+    title.textContent = book.title;
+    card.appendChild(title);
+
+    let author = document.createElement("div");
     author.classList.add("author");
+    author.textContent = book.author;
+    card.appendChild(author);
+
+    let pages = document.createElement("div");
     pages.classList.add("pages");
+    pages.textContent = book.pages;
+    card.appendChild(pages);
+
+    let read = document.createElement("div");
     read.classList.add("read");
+    read.textContent = book.read;
+    card.appendChild(read);
 
-    title.textContent = book[0];
-    author.textContent = book[1];
-    pages.textContent = book[2];
-    read.textContent = book[3];
-
-    newBook.appendChild(title);
-    newBook.appendChild(author);
-    newBook.appendChild(pages);
-    newBook.appendChild(read);
-
-    display.appendChild(newBook);
-  });
+    display.appendChild(card);
+  }
 }
 
 //Event listener to open the form for user
 addBook.addEventListener("click", () => {
   formContainer.style.display = "block";
-  formReset();
-  myLibrary.shift();
 });
 
 //Function to keep form hidden
@@ -57,24 +62,24 @@ function closeForm() {
   formContainer.style.display = "none";
 }
 
-closeForm();
-
-//function to reset form
-function formReset() {
-  form.reset();
-}
-
 //Event listener for adding a new book to library
-form.addEventListener("submit", function (e) {
-  let book1 = new Book(
-    document.getElementById("title").value,
-    document.getElementById("author").value,
-    `${document.getElementById("pages").value} Pages`,
-    document.getElementById("read").value
-  );
+submitBtn.addEventListener("click", function (e) {
   e.preventDefault();
-  myLibrary.push(Object.values(book1));
-  displayBook();
+
+  const title = document.getElementById("title").value;
+  const author = document.getElementById("author").value;
+  const pages = document.getElementById("pages").value;
+  const read = document.getElementById("read").value;
+
+  const newBook = new Book(title, author, pages, read);
+
+  myLibrary.push(newBook);
+
   console.log(myLibrary);
+
+  displayBook();
+
+  form.reset();
+
   closeForm();
 });
