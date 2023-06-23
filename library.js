@@ -40,7 +40,7 @@ function displayBook() {
 
     let pages = document.createElement("div");
     pages.classList.add("pages");
-    pages.textContent = book.pages;
+    pages.textContent = `${book.pages} Pages`;
     card.appendChild(pages);
 
     let read = document.createElement("div");
@@ -48,8 +48,23 @@ function displayBook() {
     read.textContent = book.read;
     card.appendChild(read);
 
+    let removeBtn = document.createElement("button");
+    removeBtn.classList.add("removeBtn");
+    removeBtn.textContent = "Remove";
+    removeBtn.setAttribute("data-index", i);
+    removeBtn.addEventListener("click", removeBook);
+    card.appendChild(removeBtn);
+
     display.appendChild(card);
   }
+}
+
+//function to remove books from myLibrary array
+function removeBook() {
+  const index = this.getAttribute("data-index");
+  myLibrary.splice(index, 1);
+  displayBook();
+  console.log(myLibrary);
 }
 
 //Event listener to open the form for user
