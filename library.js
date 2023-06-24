@@ -16,6 +16,7 @@ class Book {
     this.read = read;
   }
 
+  //Method to toggle read status on Book's prototype
   toggleRead() {
     this.read = this.read === "Yes" ? "No" : "Yes";
   }
