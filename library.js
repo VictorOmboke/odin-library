@@ -15,6 +15,10 @@ class Book {
     this.pages = pages;
     this.read = read;
   }
+
+  toggleRead() {
+    this.read = this.read === "Yes" ? "No" : "Yes";
+  }
 }
 
 //Function for displaying the books
@@ -55,6 +59,13 @@ function displayBook() {
     removeBtn.addEventListener("click", removeBook);
     card.appendChild(removeBtn);
 
+    let readBtn = document.createElement("button");
+    readBtn.classList.add("readBtn");
+    readBtn.textContent = "Toggle Read Status";
+    readBtn.setAttribute("data-index", i);
+    readBtn.addEventListener("click", toggleRead);
+    card.appendChild(readBtn);
+
     display.appendChild(card);
   }
 }
@@ -65,6 +76,13 @@ function removeBook() {
   myLibrary.splice(index, 1);
   displayBook();
   console.log(myLibrary);
+}
+
+//Function that changes the read status on a books card
+function toggleRead() {
+  const index = this.getAttribute("data-index");
+  myLibrary[index].toggleRead();
+  displayBook();
 }
 
 //Event listener to open the form for user
