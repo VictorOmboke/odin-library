@@ -96,6 +96,8 @@ function closeForm() {
   formContainer.style.display = "none";
 }
 
+closeForm();
+
 //Event listener for adding a new book to library
 submitBtn.addEventListener("click", function (e) {
   e.preventDefault();
