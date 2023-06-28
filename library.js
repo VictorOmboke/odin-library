@@ -119,3 +119,15 @@ submitBtn.addEventListener("click", function (e) {
 
   closeForm();
 });
+
+//Event listener to make sure all inputs are filled before submitting
+form.addEventListener("submit", function (e) {
+  const title = document.getElementById("title").value;
+  const author = document.getElementById("author").value;
+  const pages = document.getElementById("pages").value;
+
+  if (!title || !author || !pages) {
+    e.preventDefault();
+    alert("Please fill out all required fields.");
+  }
+});
