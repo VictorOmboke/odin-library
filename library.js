@@ -1,4 +1,4 @@
-//Dom elements
+//Global DOM elements
 const formContainer = document.querySelector("#form-popup");
 const addBook = document.querySelector(".open-form");
 const form = document.querySelector("#formContainer");
@@ -35,7 +35,7 @@ function displayBook() {
 
     let title = document.createElement("div");
     title.classList.add("title");
-    title.textContent = book.title;
+    title.textContent = `"${book.title}"`;
     card.appendChild(title);
 
     let author = document.createElement("div");
@@ -99,7 +99,7 @@ function closeForm() {
 closeForm();
 
 //Event listener for adding a new book to library
-submitBtn.addEventListener("click", function (e) {
+form.addEventListener("submit", function (e) {
   e.preventDefault();
 
   const title = document.getElementById("title").value;
@@ -118,16 +118,4 @@ submitBtn.addEventListener("click", function (e) {
   form.reset();
 
   closeForm();
-});
-
-//Event listener to make sure all inputs are filled before submitting
-form.addEventListener("submit", function (e) {
-  const title = document.getElementById("title").value;
-  const author = document.getElementById("author").value;
-  const pages = document.getElementById("pages").value;
-
-  if (!title || !author || !pages) {
-    e.preventDefault();
-    alert("Please fill out all required fields.");
-  }
 });
