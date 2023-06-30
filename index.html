@@ -26,7 +26,7 @@
 
     <div id="main-content">
       <div id="form-popup">
-        <form action="library_form" method="post" id="formContainer">
+        <form action="" method="post" id="formContainer">
           <h2>New Book Details</h2>
 
           <label for="title">Title</label>
@@ -39,7 +39,8 @@
           <input type="number" id="pages" name="pages" required />
 
           <h5>Have you read the book?</h5>
-          <select name="read" id="read">
+          <select name="read" id="read" required>
+            <option value="">-- Select Option --</option>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
           </select>
