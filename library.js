@@ -18,7 +18,7 @@ class Book {
 
   //Method to toggle read status on Book's prototype
   toggleRead() {
-    this.read = this.read === "Yes" ? "No" : "Yes";
+    this.read = this.read === "Read" ? "Not Read" : "Read";
   }
 }
 
@@ -53,19 +53,19 @@ function displayBook() {
     read.textContent = book.read;
     card.appendChild(read);
 
-    let removeBtn = document.createElement("button");
-    removeBtn.classList.add("removeBtn");
-    removeBtn.textContent = "Remove";
-    removeBtn.setAttribute("data-index", i);
-    removeBtn.addEventListener("click", removeBook);
-    card.appendChild(removeBtn);
-
     let readBtn = document.createElement("button");
     readBtn.classList.add("readBtn");
     readBtn.textContent = "Toggle Read Status";
     readBtn.setAttribute("data-index", i);
     readBtn.addEventListener("click", toggleRead);
     card.appendChild(readBtn);
+
+    let removeBtn = document.createElement("button");
+    removeBtn.classList.add("removeBtn");
+    removeBtn.textContent = "Remove";
+    removeBtn.setAttribute("data-index", i);
+    removeBtn.addEventListener("click", removeBook);
+    card.appendChild(removeBtn);
 
     display.appendChild(card);
   }
