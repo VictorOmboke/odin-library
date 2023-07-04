@@ -76,7 +76,6 @@ function removeBook() {
   const index = this.getAttribute("data-index");
   myLibrary.splice(index, 1);
   displayBook();
-  console.log(myLibrary);
 }
 
 //Function that changes the read status on a books card
@@ -98,6 +97,20 @@ function closeForm() {
 
 closeForm();
 
+//Function for closing form pop-up when clicked outside of
+function elementInsideForm(e) {
+  return form.contains(e) || addBook.contains(e);
+}
+
+//Event Listener for closing form pop-up when clicked outside of
+document.addEventListener("click", function (e) {
+  const clickInsideForm = elementInsideForm(e.target);
+
+  if (!clickInsideForm) {
+    closeForm();
+  }
+});
+
 //Event listener for adding a new book to library
 form.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -110,8 +123,6 @@ form.addEventListener("submit", function (e) {
   const newBook = new Book(title, author, pages, read);
 
   myLibrary.push(newBook);
-
-  console.log(myLibrary);
 
   displayBook();
 
