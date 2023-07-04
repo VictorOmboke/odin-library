@@ -102,7 +102,7 @@ h5 {
 }
 
 #display {
-  margin-top: 40px;
+  margin-top: 60px;
   padding: 0 100px;
   height: 100vh;
   display: grid;
@@ -112,13 +112,14 @@ h5 {
 }
 
 .card {
-  height: 325px;
+  height: 330px;
   padding: 15px;
   color: #ffffff;
   background-color: #ffb703;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 500;
   text-align: center;
+  word-wrap: break-word;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -129,13 +130,20 @@ h5 {
 
 .readBtn,
 .removeBtn {
+  justify-self: flex-end;
   width: 200px;
-  height: 65px;
+  height: 55px;
   color: #ffffff;
-  font-size: 20px;
-  padding: 8px 15px;
+  font-size: 18px;
+  padding: 12px 15px;
   border-radius: 10px;
   border-style: none;
+}
+
+.readBtn:active,
+.removeBtn:active {
+  transform: scale(0.98);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
 }
 
 .readBtn {
