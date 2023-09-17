@@ -7,7 +7,7 @@ const submitBtn = document.querySelector("#submit");
 //Array for storing books
 let myLibrary = [];
 
-//Object constructor for adding new books
+//Object constructor for adding new books using class syntax
 class Book {
   constructor(title, author, pages, read) {
     this.title = title;
