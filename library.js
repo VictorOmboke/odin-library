@@ -8,18 +8,16 @@ const submitBtn = document.querySelector("#submit");
 let myLibrary = [];
 
 //Object constructor for adding new books
-class Book {
-  constructor(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-  }
+function Book(title, author, pages, read) {
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.read = read;
 
   //Method to toggle read status on Book's prototype
-  toggleRead() {
+  this.toggleRead = function () {
     this.read = this.read === "Read" ? "Not Read" : "Read";
-  }
+  };
 }
 
 //Function for displaying the books
