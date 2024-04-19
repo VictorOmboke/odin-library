@@ -7,6 +7,36 @@ const submitBtn = document.querySelector("#submit");
 //Array for storing books
 let myLibrary = [];
 
+//form Validation
+const title = document.getElementById("title");
+const author = document.getElementById("author");
+const pages = document.getElementById("pages");
+const select = document.getElementById("read").value;
+
+title.addEventListener("input", (event) => {
+  if (title.validity.valueMissing) {
+    title.setCustomValidity("Please enter a title.");
+  } else {
+    title.setCustomValidity("");
+  }
+});
+
+author.addEventListener("input", (event) => {
+  if (author.validity.valueMissing) {
+    author.setCustomValidity("Please enter an author.");
+  } else {
+    author.setCustomValidity("");
+  }
+});
+
+pages.addEventListener("input", (event) => {
+  if (pages.validity.rangeUnderflow) {
+    pages.setCustomValidity("Please enter a page count higher than 0.");
+  } else {
+    pages.setCustomValidity("");
+  }
+});
+
 //Object constructor for adding new books using class syntax
 class Book {
   constructor(title, author, pages, read) {
